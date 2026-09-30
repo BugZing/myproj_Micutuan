@@ -2,19 +2,16 @@
 
 namespace App\Controllers;
 
+use App\Models\CustomerModel;
+
 class Customers extends BaseController
 {
     public function index()
     {
-        $customers = [
-            ['id' => 1, 'name' => 'Ana Reyes',   'email' => 'ana@example.com'],
-            ['id' => 2, 'name' => 'Ben Cruz',    'email' => 'ben@example.com'],
-            ['id' => 3, 'name' => 'Cara Santos', 'email' => 'cara@example.com'],
-            ['id' => 4, 'name' => 'Diego Lim',   'email' => 'diego@example.com'],
-            ['id' => 5, 'name' => 'Ella Tan',    'email' => 'ella@example.com'],
-        ];
+        $customerModel = new CustomerModel();
 
-        // Temporary output until you create a Customers view:
-        return view('customer_accounts', ['customers' => $customers]);
+        return view('customer_accounts', [
+            'customers' => $customerModel->findAll(),
+        ]);
     }
 }

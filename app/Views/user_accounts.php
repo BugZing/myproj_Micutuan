@@ -19,8 +19,8 @@
             <tr>
                 <th>ID</th>
                 <th>Username</th>
-                <th>Email</th>
-                <th>Role</th>
+                <th>Full Name</th>
+                <!-- <th>Role</th> -->
             </tr>
         </thead>
         <tbody>
@@ -28,8 +28,7 @@
                 <tr>
                     <td><?= esc($user['id']) ?></td>
                     <td><?= esc($user['username']) ?></td>
-                    <td><?= esc($user['email']) ?></td>
-                    <td><?= esc($user['role']) ?></td>
+                    <td><?= esc($user['full_name']) ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
