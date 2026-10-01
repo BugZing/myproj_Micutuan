@@ -10,6 +10,7 @@
     <a href="/about">About</a> |
     <a href="/customers">Customer Accounts</a> |
     <a href="/users">User Accounts</a>
+    <p><a href="/customers/new">Add New Customer</a></p>
     </nav>
     <hr>
     
@@ -21,6 +22,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +31,9 @@
                     <td><?= esc($customer['id']) ?></td>
                     <td><?= esc($customer['full_name']) ?></td>
                     <td><?= esc($customer['email']) ?></td>
+                    <td>
+                        <a href="/customers/<?= esc($customer['id']) ?>/edit">Edit</a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
