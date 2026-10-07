@@ -11,7 +11,13 @@
     <a href="/customers">Customer Accounts</a> |
     <a href="/users">User Accounts</a>
     <p><a href="/customers/new">Add New Customer</a></p>
-    </nav>
+    <form action="<?= esc(site_url('logout'), 'attr') ?>" method="post" style="display: inline;">
+        <?= csrf_field() ?>
+        <button type="submit">Log Out</button>
+    <a href="/account/password">Change Password</a> |
+    </form>    
+    
+</nav>
     <hr>
     
     <h1>Customer Accounts</h1>

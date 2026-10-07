@@ -265,5 +265,38 @@ class Users extends BaseController
         return [$filename, $path];
     }
     
-    
+    public function seedExistingPasswords()
+    {
+        if (ENVIRONMENT !== 'development') {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        $userModel = new UserModel();
+
+        // Local-development password for your current sample users.
+        $temporaryPassword = 'ChangeMe123!';
+
+        $updatedUsers = 0;
+
+        foreach ($userModel->findAll() as $user) {
+            // Do not overwrite a password that already exists.
+            if (! empty($user['password'])) {
+                continue;
+            }
+
+            $hash = password_hash($temporaryPassword, PASSWORD_DEFAULT);
+
+            if ($hash === false) {
+                throw new \RuntimeException('Password hashing failed.');
+            }
+
+            if ($userModel->update($user['id'], ['password' => $hash])) {
+                $updatedUsers++;
+            }
+        }
+
+        return "Created hashed passwords for {$updatedUsers} user account(s). "
+            . "Temporary login password: {$temporaryPassword}. "
+            . "Delete this method and its route after testing.";
+    }
 }

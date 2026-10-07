@@ -20,13 +20,20 @@
         <a href="/about">About</a> |
         <a href="/customers">Customer Accounts</a> |
         <a href="/users">User Accounts</a>
-
         <p><a href="/users/new">Add New User</a></p>
+        <form action="<?= esc(site_url('logout'), 'attr') ?>" method="post" style="display: inline;">
+        <?= csrf_field() ?>
+            <button type="submit">Log Out</button>
+        <a href="/account/password">Change Password</a> |
+        </form>  
     </nav>
 
     <hr>
 
     <h1>User Accounts</h1>
+    <?php if (session()->get('logged_in') === true): ?>
+        <p>Logged in as <?= esc(session()->get('username')) ?>.</p>
+    <?php endif; ?>
 
     <table border="1">
         <thead>
